@@ -1,0 +1,7 @@
+#Lincher - A Social Network.
+
+#User
+#Post
+
+1. A Post belongs to a User.
+2. A User has many Post.
