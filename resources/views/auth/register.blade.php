@@ -46,6 +46,27 @@
 
                         <div class="field is-horizontal">
                             <div class="field-label">
+                                <label class="label">Username</label>
+                            </div>
+
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control">
+                                        <input class="input" id="username" type="name" name="username" value="{{ old('username') }}"
+                                               required autofocus>
+                                    </p>
+
+                                    @if ($errors->has('username'))
+                                        <p class="help is-danger">
+                                            {{ $errors->first('username') }}
+                                        </p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-horizontal">
+                            <div class="field-label">
                                 <label class="label">E-mail Address</label>
                             </div>
 

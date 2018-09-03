@@ -14,10 +14,11 @@ class CreateFriendsTable extends Migration
     public function up()
     {
         Schema::create('friends', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('user_id');
             $table->integer('friend_id');
-            $table->timestamps();
+            $table->boolean('accepted')->default(false);
+
+            $table->primary(['user_id', 'friend_id']);
         });
     }
 
