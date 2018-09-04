@@ -16,7 +16,7 @@
                             <div class="media-content">
                                 <div class="content">
                                     <p>
-                                        <strong>{{$post->user->name}}</strong> <small>@johnsmith</small> <small>{{ $post->created_at->diffForHumans() }}</small>
+                                        <!-- <strong>{{$post->user->name}}</strong> <small>@johnsmith</small> <small>{{ $post->created_at->diffForHumans() }}</small> -->
                                         <br>
                                         {{$post->body}}
                                     </p>

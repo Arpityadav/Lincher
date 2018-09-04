@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Post;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -27,24 +28,43 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function recievedFriendRequest()
+    public function getRouteKeyName()
     {
-        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
+        return 'username';
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 
     public function sendFriendRequest()
     {
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
+    }
+
+    public function recievedFriendRequest()
+    {
         return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
     }
 
-    public function friendRequestToBeAcceptedByFriend()
+    public function friendRequestsPending()
     {
         return $this->sendFriendRequest()->wherePivot('accepted', false);
+    }
+    public function hasFriendRequestPending(User $user)
+    {
+        return (bool) $this->friendRequestsPending()->where('id', $user->id)->count();
+    }
+
+    public function isFriendsWith(User $user)
+    {
+        return  $this->friendsList()->where('id', $user->id)->count();
     }
 
     public function friendsList()
     {
-        $friends = $this->recievedFriendRequest()->wherePivot('accepted', true)->get()->merge($this->sendFriendRequest()->wherePivot('accepted', true));
+        return $this->recievedFriendRequest()->wherePivot('accepted', true)->get()->merge($this->sendFriendRequest()->wherePivot('accepted', true)->get());
     }
 
     public function acceptFriendRequest(User $user)
