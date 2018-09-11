@@ -34,6 +34,24 @@ class UsersController extends Controller
     public function deleteFriend(User $user)
     {
         auth()->user()->sendFriendRequest()->detach($user->id);
+        auth()->user()->recievedFriendRequest()->detach($user->id);
+
+        return back();
+    }
+
+    public function friendsIndex()
+    {
+        $friends = auth()->user()->friendsList();
+        // dd(auth()->user()->recievedFriendRequestPending());
+        $recievedFriendRequestsPending = auth()->user()->recievedFriendRequestPending();
+
+        return view('friends.index', compact('friends', 'recievedFriendRequestsPending'));
+    }
+
+    public function acceptFriendRequest(User $user)
+    {
+        auth()->user()->acceptFriendRequest($user);
+
         return back();
     }
 }
