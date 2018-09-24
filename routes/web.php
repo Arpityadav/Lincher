@@ -9,7 +9,11 @@ Route::get('/friends', 'UsersController@friendsIndex');
 
 Route::get('/{user}', 'UsersController@show');
 
+Route::post('/post', 'PostsController@store');
+Route::get('/post/{post}', 'PostsController@show');
+
 Route::post('/{user}/sendFriendRequest', 'UsersController@sendFriendRequest');
 Route::post('/{user}/acceptFriendRequest', 'UsersController@acceptFriendRequest');
+Route::post('/{user}/updateDP', 'UsersController@updateDP');
 Route::post('/{user}/cancelFriendRequest', 'UsersController@cancelFriendRequest');
 Route::post('/{user}/deleteFriend', 'UsersController@deleteFriend');

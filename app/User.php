@@ -19,6 +19,12 @@ class User extends Authenticatable
         'name', 'username', 'email', 'password',
     ];
 
+    public function getGravatarAttribute()
+    {
+        $hash = md5(strtolower(trim($this->attributes['email'])));
+        return "http://www.gravatar.com/avatar/$hash";
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

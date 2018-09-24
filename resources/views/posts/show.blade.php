@@ -1,0 +1,42 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="columns is- is-marginless is-centered">
+            <div class="column is-8 is-centered">
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong>{{$post->user->name}}</strong> <small>@johnsmith</small> <small>{{ $post->created_at->diffForHumans() }}</small>
+                            <br>
+                            {{$post->body}}
+                        </p>
+                        @if($post->image_url)
+                            <img src="/posts/images/{{ $post->image_url }}">
+                        @endif
+                    </div>
+                    <nav class="level is-mobile">
+                        <div class="level-left">
+                            <a class="level-item" aria-label="reply">
+                                <span class="icon is-small">
+                                <i class="fas fa-reply" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                            <a class="level-item" aria-label="retweet">
+                                <span class="icon is-small">
+                                    <i class="fas fa-retweet" aria-hidden="true"></i>
+                                </span>
+                            </a>
+
+                            <a class="level-item" aria-label="like">
+                                <span class="icon is-small">
+                                    <i class="fas fa-heart" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
