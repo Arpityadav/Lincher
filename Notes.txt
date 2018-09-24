@@ -5,3 +5,9 @@
 
 1. A Post belongs to a User.
 2. A User has many Post.
+
+#things to fix
+1.error reporting
+2. N+1 problem
+3. @bug
+4. seeding file

@@ -12,6 +12,8 @@ Route::get('/{user}', 'UsersController@show');
 Route::post('/post', 'PostsController@store');
 Route::get('/post/{post}', 'PostsController@show');
 
+Route::post('/post/{post}/comment', 'CommentsController@create');
+
 Route::post('/{user}/sendFriendRequest', 'UsersController@sendFriendRequest');
 Route::post('/{user}/acceptFriendRequest', 'UsersController@acceptFriendRequest');
 Route::post('/{user}/updateDP', 'UsersController@updateDP');
