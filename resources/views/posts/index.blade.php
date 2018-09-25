@@ -29,6 +29,7 @@
                         </div>
                     </form>
                 </div>
+                    @include('layouts.errors')
 
                 @foreach($posts as $post)
                     <div class="box">
@@ -42,7 +43,7 @@
                             <div class="media-content">
                                 <div class="content">
                                     <p>
-                                        <strong>{{$post->user->name}}</strong> <small>@johnsmith</small> <small>{{ $post->created_at->diffForHumans() }}</small>
+                                        <a href="/{{$post->user->username}}"><strong>{{$post->user->name}}</strong> <small>{{'@'.$post->user->username}}</small></a> <small>{{ $post->created_at->diffForHumans() }}</small>
                                         <br>
                                         {{$post->body}}
                                     </p>

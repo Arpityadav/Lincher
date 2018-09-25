@@ -7,7 +7,12 @@
 2. A User has many Post.
 
 #things to fix
-1.error reporting
-2. N+1 problem
-3. @bug
+1.error reporting - Done!
+2. N+1 problem - Done !
+3. @bug - Done!
 4. seeding file
+
+
+#Features to add
+1. Liking a Post,
+2.Searching facility.

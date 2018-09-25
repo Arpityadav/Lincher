@@ -58,6 +58,9 @@
                         </div>
                     </div>
                 </form>
+
+                @include('layouts.errors')
+
                 <br>
                 @if(count($post->comment))
                     <div class="box">
