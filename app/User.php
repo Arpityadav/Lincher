@@ -54,9 +54,9 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
     }
 
-    public function recievedFriendRequestPending()
+    public function recievedFriendRequestsPending()
     {
-        return $this->recievedFriendRequest()->wherePivot('accepted', false)->get();
+        return $this->recievedFriendRequest()->wherePivot('accepted', false);
     }
 
     public function friendRequestsPending()
@@ -82,28 +82,4 @@ class User extends Authenticatable
     {
         return $this->recievedFriendRequest()->where('user_id', $user->id)->first()->pivot->update(['accepted' => true]);
     }
-    // public function friendsOf()
-    // {
-    //     return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
-    // }
-
-    // public function friends()
-    // {
-    //     if ($friends = $this->friendsOfMine()->wherePivot('accepted', true)) {
-    //         $friends = $friends->get();
-    //     }
-
-    //     if ($friendRequestPending = $this->friendsOfMine()->wherePivot('accepted', false)) {
-    //         $friendRequestPending = $friendRequestPending->get();
-    //     }
-
-    //     if (count($friendRequestPending) && count($friends)) {
-    //         return [$friends, $friendRequestPending];
-    //     } elseif (count($friends)) {
-    //         return $friends;
-    //     } elseif (count($friendRequestPending)) {
-    //         return $friendRequestPending;
-    //     }
-    //     // return $this->friendsOfMine()->wherePivot('accepted', true);
-    // }
 }

@@ -43,7 +43,7 @@ class UsersController extends Controller
     {
         $friends = auth()->user()->friendsList();
         // dd(auth()->user()->recievedFriendRequestPending());
-        $recievedFriendRequestsPending = auth()->user()->recievedFriendRequestPending();
+        $recievedFriendRequestsPending = auth()->user()->recievedFriendRequestsPending()->get();
 
         return view('friends.index', compact('friends', 'recievedFriendRequestsPending'));
     }

@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <br>
     <div class="columns">
         <div class="column is-6 is-offset-1">
             <h3 class="subtitle is-h3">My Friends</h3>
-            @if($friends)
+            @if(count($friends))
                 @foreach($friends as $friend)
                     <div class="box">
                         <article class="media">
@@ -16,8 +17,13 @@
                             <div class="media-content">
                                 <div class="content">
                                 <p>
-                                  <a href="/{{$friend->username}}"><strong>{{$friend->name}}</strong> <small>@ {{ $friend->username }}</small></a>
+                                  <a href="/{{$friend->username}}"><strong>{{$friend->name}}</strong> <small>{{'@'.$friend->username }}</small></a>
                                 </p>
+
+                                <form action="/{{$friend->username}}/deleteFriend" method="POST">
+                                    @csrf
+                                    <button class="button is-danger" type="submit">Remove Friend</button>
+                                </form>
                             </div>
                         </article>
                     </div>
@@ -27,7 +33,7 @@
             @endif
         </div>
 
-        <div class="column is-2 is-offset-1">
+        <div class="column is-3">
             <p>Friend Request</p>
             <div class="box">
                 <article class="media">
@@ -42,7 +48,7 @@
                             <div class="media-content">
                                 <div class="content">
                                     <p>
-                                        <a href="/{{$recievedFriendRequestPending->username}}"><strong>{{$recievedFriendRequestPending->name}}</strong> <small>@ {{ $recievedFriendRequestPending->username }}</small></a>
+                                        <a href="/{{$recievedFriendRequestPending->username}}"><strong>{{$recievedFriendRequestPending->name}}</strong> <small>{{ '@'.$recievedFriendRequestPending->username }}</small></a>
                                             <div class="field is-grouped">
                                                 <p class="control">
                                                     <form action="{{$recievedFriendRequestPending->username}}/acceptFriendRequest" method="POST">

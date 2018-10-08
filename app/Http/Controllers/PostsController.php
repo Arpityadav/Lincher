@@ -17,7 +17,9 @@ class PostsController extends Controller
         $posts = Post::where(function ($query) {
             return $query->where('user_id', auth()->user()->id)
                 ->orWhereIn('user_id', auth()->user()->friendsList()->pluck('id'));
-        })->with('user')->latest()->get();
+        })->with(['user', 'like' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }])->latest()->get();
 
         if (request('viewBy') == 'latest') {
             $posts = Post::latest()->get();

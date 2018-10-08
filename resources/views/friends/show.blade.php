@@ -34,6 +34,15 @@
                                         @csrf
                                         <button class="button is-danger is-rounded" type="submit">Cancel Friend Request</button>
                                     </form>
+                                @elseif(count(auth()->user()->recievedFriendRequestsPending))
+                                    @foreach(auth()->user()->recievedFriendRequestsPending as $recievedFriendRequestPending)
+                                        @if($user->id === $recievedFriendRequestPending->id)
+                                            <form action="{{$recievedFriendRequestPending->username}}/acceptFriendRequest" method="POST">
+                                                @csrf
+                                                <button type="submit" class="button is-small is-success">Accept Friend Request</button>
+                                            </form>
+                                        @endif
+                                    @endforeach
                                 @else
                                     <form action="/{{$user->username}}/sendFriendRequest" method="POST">
                                         @csrf
@@ -41,6 +50,11 @@
                                     </form>
                                 @endif
                             @endauth
+                            @guest
+                                <h2 class="subtitle">
+                                    <a href="/login">Login</a> to send friend request.
+                                </h2>
+                            @endguest
                         </div>
 
                     </div>
@@ -49,7 +63,9 @@
         </section>
 
         <div class="column is-8 is-offset-2">
-                <h3 class="subtitle is-3">Recent Activity</h3>
+            <br>
+            <h3 class="subtitle is-3">Recent Activity</h3>
+            @if(count($user->posts))
                 @foreach($user->posts as $post)
                     <div class="box">
                         <article class="media">
@@ -91,5 +107,10 @@
                         </article>
                     </div>
                 @endForeach
-            </div>
+            @else
+                <h6 class="subtitle is-6">
+                    No posts from {{$user->name}}.
+                </h6>
+            @endif
+        </div>
 @endsection
