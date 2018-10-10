@@ -6,10 +6,13 @@ Auth::routes();
 
 Route::get('/friends', 'UsersController@friendsIndex');
 
+Route::get('/search', 'SearchController@show');
+
 Route::get('/{user}', 'UsersController@show');
 
 Route::post('/post', 'PostsController@store');
 Route::get('/post/{post}', 'PostsController@show');
+
 
 Route::post('/post/{post}/comment', 'CommentsController@create');
 

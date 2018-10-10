@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -14,6 +15,7 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
+        $user->load('posts');
         return view('friends.show', compact('user'));
     }
 

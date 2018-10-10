@@ -28,7 +28,18 @@
                     </div>
 
                     <div class="navbar-menu" id="navMenu">
-                        <div class="navbar-start"></div>
+                        <div class="navbar-start">
+                            <div class="field has-addons inline-block">
+                                <form action="/search" method="GET">
+                                    <div class="control inline-block">
+                                        <input class="input" type="text" name="query" placeholder="Search for people">
+                                    </div>
+                                        <div class="control inline-block">
+                                            <button type="submit" class="button  is-info">Search</button>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
 
                         <div class="navbar-end">
                             @if (Auth::guest())

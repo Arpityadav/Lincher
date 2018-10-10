@@ -10,9 +10,9 @@
 1.error reporting - Done!
 2. N+1 problem - Done !
 3. @bug - Done!
-4. seeding file
+4. seeding file - Done !
 
 
 #Features to add
-1. Liking a Post,
-2.Searching facility.
+1. Liking a Post -  Done!
+2.Searching facility - Done!
